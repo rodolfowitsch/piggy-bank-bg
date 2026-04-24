@@ -4,10 +4,14 @@
 set -e
 
 if lsmod | grep -q v4l2loopback; then
-    echo "v4l2loopback already loaded."
-    echo "Devices:"
-    ls /dev/video* 2>/dev/null || echo "  (none)"
-    exit 0
+    # Check if /dev/video10 exists and is a valid output device
+    if [ -e /dev/video10 ] && v4l2-ctl --device=/dev/video10 --all 2>/dev/null | grep -q "Video Output"; then
+        echo "v4l2loopback already loaded and /dev/video10 is ready."
+        exit 0
+    fi
+    echo "v4l2loopback loaded but /dev/video10 is missing or not an output device."
+    echo "Reloading with correct options..."
+    sudo modprobe -r v4l2loopback
 fi
 
 echo "Loading v4l2loopback..."

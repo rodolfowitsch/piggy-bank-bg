@@ -53,9 +53,9 @@ class App:
 
         print(
             "\nReady! Commands:\n"
-            "  drop [saying]  - trigger coin drop animation\n"
-            "  text <saying>  - change the saying text\n"
-            "  quit / q       - exit\n"
+            "  drop / d [saying]  - trigger coin drop animation\n"
+            "  text / t <saying>  - change the saying text\n"
+            "  quit / q           - exit\n"
         )
 
         try:
@@ -101,13 +101,13 @@ class App:
             cmd = parts[0].lower()
 
             with self.lock:
-                if cmd == "drop":
+                if cmd in ("drop", "d"):
                     saying = parts[1] if len(parts) > 1 else self.current_saying
                     self.current_saying = saying
                     self.text_dirty = True
                     self.animation.trigger(saying)
                     print(f"  Coin drop! \"{saying}\"")
-                elif cmd == "text":
+                elif cmd in ("text", "t"):
                     if len(parts) > 1:
                         self.current_saying = parts[1]
                         self.text_dirty = True

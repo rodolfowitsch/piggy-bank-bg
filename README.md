@@ -45,8 +45,8 @@ Then in Microsoft Teams, select **PiggyBG** as your camera source.
 
 | Command | Description |
 |---------|-------------|
-| `drop [saying]` | Trigger coin drop animation, optionally with a new saying |
-| `text <saying>` | Change the saying text without triggering a drop |
+| `drop` / `d` [saying] | Trigger coin drop animation, optionally with a new saying |
+| `text` / `t` <saying> | Change the saying text without triggering a drop |
 | `quit` / `q` | Exit |
 
 ### Options

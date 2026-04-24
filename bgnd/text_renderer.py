@@ -43,8 +43,8 @@ class TextRenderer:
         bbox = draw.textbbox((0, 0), text, font=self.font)
         tw = bbox[2] - bbox[0]
         th = bbox[3] - bbox[1]
-        x = (width - tw) // 2
-        y = height - th - 60
+        x = width / 5
+        y = height / 3
 
         # Background pill behind text for readability
         pad = 16
