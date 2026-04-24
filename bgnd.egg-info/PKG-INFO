@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: bgnd
+Version: 0.1.0
+Summary: Dynamic piggy bank virtual background for Microsoft Teams
+Requires-Python: >=3.12
+Requires-Dist: opencv-python>=4.9
+Requires-Dist: mediapipe>=0.10.9
+Requires-Dist: pyvirtualcam>=0.15
+Requires-Dist: numpy>=1.26
+Requires-Dist: Pillow>=10.2

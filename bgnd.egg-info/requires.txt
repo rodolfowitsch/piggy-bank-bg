@@ -1,0 +1,5 @@
+opencv-python>=4.9
+mediapipe>=0.10.9
+pyvirtualcam>=0.15
+numpy>=1.26
+Pillow>=10.2
