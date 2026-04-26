@@ -44,7 +44,7 @@ class TextRenderer:
         tw = bbox[2] - bbox[0]
         th = bbox[3] - bbox[1]
         x = width / 5
-        y = height / 3
+        y = height / 10
 
         # Background pill behind text for readability
         pad = 16
