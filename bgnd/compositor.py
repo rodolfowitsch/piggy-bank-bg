@@ -34,11 +34,7 @@ class Compositor:
             angle = anim_state.get("coin_angle", 0.0)
             self._overlay_coin(output, cx, cy, angle)
 
-        # Step 3: overlay text
-        if text_layer is not None and anim_state.get("text_visible"):
-            self._alpha_overlay_full(output, text_layer)
-
-        # Step 4: composite person
+        # Step 3: composite person
         mask_resized = cv2.resize(mask, (self.width, self.height))
         mask_3ch = mask_resized[:, :, np.newaxis]
         person_resized = cv2.resize(person_frame, (self.width, self.height))
@@ -47,7 +43,13 @@ class Compositor:
             person_resized.astype(np.float32) * mask_3ch
             + output.astype(np.float32) * (1 - mask_3ch)
         )
-        return np.clip(output, 0, 255).astype(np.uint8)
+        output = np.clip(output, 0, 255).astype(np.uint8)
+
+        # Step 4: overlay text above person
+        if text_layer is not None and anim_state.get("text_visible"):
+            self._alpha_overlay_full(output, text_layer)
+
+        return output
 
     def _overlay_coin(self, bg: np.ndarray, cx: int, cy: int, angle: float):
         coin = self.coin_bgra
